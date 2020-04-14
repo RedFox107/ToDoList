@@ -1,11 +1,20 @@
 import React from "react";
 import ToDoListItem from "./ToDoListItem";
+import s from './ToDoList.module.css';
 
-const ToDoList = (props)=>{
-    const items = ['Learn React','Build awesome App']
+
+
+
+const ToDoList = ({todos, ...props}) => {
     return (
-        <ul>
-            {items.map((i)=>(<ToDoListItem text={i}/>))}
+        <ul className={s.toDoList}>
+            {todos.map(({id, ...item}) => (
+                    <li key={id}>
+                        <ToDoListItem {...item}/>
+                    </li>
+                )
+            )
+            }
         </ul>
     )
 }

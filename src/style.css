@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    width: 48%;
+    font-size: 120%;
+    /border: 1px solid red;
+    padding: 3%;
+}
+
+.flex {
+    display: flex;
+}
+
+#root {
+    margin-top:10% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg,#EECFBA,#C5DDE8);
+}

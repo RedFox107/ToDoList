@@ -1,0 +1,60 @@
+.baseBlock{
+    margin: 3% 0;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.searchInput{
+    border: 1px solid rgb(231, 222, 224);
+    border-radius:5px ;
+    padding:5px ;
+    width: auto;
+    flex-grow: 1;
+    margin-right: 2px;
+    box-shadow: -2px -1px 1px 1px rgba(231, 222, 224,0.5);
+    background-color: rgba(255,255,255,0.8)
+}
+
+.btnGroup{
+    margin-left: 3px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.btnGroup>button{
+    cursor: pointer;
+    height: 35px;
+    box-sizing: border-box;
+    border: 1px solid rgb(231, 222, 224);
+    flex-grow: 1;
+    background-color: rgba(255,255,255,0.6);
+
+}
+
+.btnGroup>button:nth-child(2){
+    border-right:none ;
+    border-left:none ;
+}
+
+.btnGroup>button:nth-child(1){
+    border-bottom-left-radius: 7px;
+    border-top-left-radius: 7px;
+}
+.btnGroup>button:nth-child(3){
+    border-bottom-right-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.btnGroup>button:hover{
+    border: none;
+    background-color: bisque;
+    transition: 0.4s;
+    box-shadow: 0px 0px 2px 1px bisque;
+}
+
+.btnGroup>.active{
+    box-shadow: 0px 0px 2px 1px bisque;
+
+    border: none;
+    background-color: bisque;
+}

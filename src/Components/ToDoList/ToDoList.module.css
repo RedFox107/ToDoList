@@ -1,0 +1,67 @@
+.important {
+    font-weight: bold;
+    color: #4d92ed;
+}
+
+.toDoList {
+
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+.toDoList > li {
+    padding-right: 4px;
+    list-style: none;
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 7px;
+    margin-bottom: 2%;
+}
+
+.toDoListItem {
+
+
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 8fr 1fr 1fr;
+}
+
+.toDoListItemLabel {
+    font-size: 110%;
+    padding: 5% 2%;
+}
+
+.btn {
+    margin: 20% 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background-color: rgba(255,255,255,0.4);
+}
+
+.btn:hover {
+
+    transition: 0.5s;
+    color: white;
+}
+
+.excBtn {
+    border: 2px solid rgba(62, 184, 116, 0.81);
+
+}
+
+.trashBtn {
+    border: 2px solid rgba(237, 62, 0, 0.8);
+
+}
+
+.trashBtn:hover {
+    background-color: rgba(237, 62, 0, 0.8);
+}
+
+.excBtn:hover {
+    background-color: #3eb874;
+}
+
+.btn >i{
+    font-size: 130%;
+}
