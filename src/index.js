@@ -24,5 +24,4 @@ const App = (props)=>{
         <ToDoList todos={ToDoData}/>
     </div>)
 }
-
 ReactDOM.render(<App/>,document.getElementById('root'))
