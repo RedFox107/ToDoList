@@ -25,7 +25,8 @@
 }
 
 .toDoListItemLabel {
-    font-size: 110%;
+    cursor: pointer;
+    font-size: 1.1em;
     padding: 5% 2%;
 }
 
@@ -63,4 +64,7 @@
 
 .btn >i{
     font-size: 130%;
+}
+.done{
+    text-decoration: line-through ;
 }
