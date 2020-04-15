@@ -29,7 +29,7 @@ class App extends React.Component {
         )
 
     }
-    toggleImportant = (id,value)=>{
+    toggleImportant = (id)=>{
         this.setState(({data})=>{
             const {item,index} = this.getElementById(data,id)
             return {
@@ -50,10 +50,10 @@ class App extends React.Component {
             }
         })
     }
-    addElement = (label)=>{
+    addElement = (label="")=>{
         this.setState(({data,lastId})=>(
                 {
-                    data:[...data,this.createToDoItem(lastId+1,lastId+1)],
+                    data:[...data,this.createToDoItem(lastId+1,label)],
                     lastId:lastId+1,
                 }
             )
@@ -71,9 +71,11 @@ class App extends React.Component {
     }
     render() {
         window.state = this.state
-        const {data} = this.state;
+        const {data} = this.state,
+            toDo = data.filter((e)=>!e.done).length,
+            done = data.length-toDo;
         return (<div className={"body"}>
-            <AppHeader/>
+            <AppHeader toDo={toDo} done={done}/>
             <SearchPanel placeholder={"search..."}/>
             <ToDoList
                 todos={data}
