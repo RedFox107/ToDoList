@@ -31,7 +31,6 @@
 }
 
 .btn {
-    margin: 20% 0;
     cursor: pointer;
     border: none;
     border-radius: 6px;
@@ -45,11 +44,13 @@
 }
 
 .excBtn {
+    margin: 20% 0;
     border: 2px solid rgba(62, 184, 116, 0.81);
 
 }
 
 .trashBtn {
+    margin: 20% 0;
     border: 2px solid rgba(237, 62, 0, 0.8);
 
 }
@@ -67,4 +68,14 @@
 }
 .done{
     text-decoration: line-through ;
+}
+.createItemWrapper{
+    display: grid;
+    grid-template-columns:4fr 1fr;
+}
+.createItemWrapper>.btn{
+    font-size: 0.75em;
+}
+.errors{
+
 }

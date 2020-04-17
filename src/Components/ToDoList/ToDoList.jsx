@@ -1,21 +1,23 @@
 import React from "react";
 import ToDoListItem from "./ToDoListItem";
 import s from './ToDoList.module.css';
+import s_searchPanel from '../SearchPanel/SearchPanel.module.css'
 import * as PropTypes from "prop-types";
 
 class ToDoList extends React.Component {
     state={
-        newItemText:""
+        newItemText:"",
+        errors:""
     }
     ref =  React.createRef();
     changeText = (e,clear=false)=>{
         //debugger
-
+        //debugger
         this.setState((state)=>{
             //let aa = e.currentTarget()
-            //debugger
+
             return {
-                ...state,
+                errors:"",
                 newItemText: !clear?(this.ref.current.value) : ''
             }
 
@@ -24,12 +26,20 @@ class ToDoList extends React.Component {
 
     addElement = ()=>{
         const label = this.state.newItemText
+        if(!label){
+            this.setState((state)=>({
+                ...state,
+                errors:"Text field cannot be empty!"
+            }))
+            return;
+        }
         this.props.addElement(label);
+
         this.changeText(null,true);
     }
     render() {
         let {todos, ...props} = this.props;
-        const newItemText = this.state.newItemText
+        const {newItemText,errors} = this.state
         return (
             <>
                 <ul className={s.toDoList}>
@@ -52,8 +62,19 @@ class ToDoList extends React.Component {
                     )
                     }
                 </ul>
-                <input onChange={this.changeText} value={newItemText} ref={this.ref}/>
-                <button onClick={this.addElement}>Add item</button>
+                <div className={s.createItemWrapper}>
+                <input
+                    onChange={this.changeText}
+                    className={s_searchPanel.searchInput}
+                    value={newItemText} ref={this.ref}
+                    placeholder={"Create new item..."}
+                />
+                    <button onClick={this.addElement} className={s.btn}>Add item</button>
+                </div>
+                <div className={s.errors}>
+                    <span>{errors}</span>
+                </div>
+
             </>
         )
     }

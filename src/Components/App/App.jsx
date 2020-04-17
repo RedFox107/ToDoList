@@ -7,20 +7,11 @@ import '../../style.css';
 class App extends React.Component {
     state = {
         data: [
-            {
-                id: 0,
-                label: 'Learn React',
-                important: false,
-                done:false
-            },
-            {
-                id: 1,
-                label: 'Build awesome App',
-                important: false,
-                done: false,
-            }
+            
         ],
-        lastId: 1,
+        lastId: 0,
+        filterText:"",
+        buttonFilter:'all'
     }
     deleteElement = (id)=> {
         this.setState(({data})=>(
@@ -30,25 +21,17 @@ class App extends React.Component {
 
     }
     toggleImportant = (id)=>{
-        this.setState(({data})=>{
-            const {item,index} = this.getElementById(data,id)
-            return {
-                data:[...data.slice(0,index),{...item,important:!item.important},...data.slice(index+1)]
-            }
-        })
-
+        this.setState(({data})=>this.toggleProperty(data,id,'important'))
     }
     toggleDone = (id)=>{
-        this.setState(({data})=>{
-            const {item,index} = this.getElementById(data,id)
-            /*
-            const {id,label,important,done} = data[i];
-            const newItem = this.createToDoItem(id,label,important,!done)
-            */
-            return {
-                data:[...data.slice(0,index),{...item,done:!item.done},...data.slice(index+1)]
-            }
-        })
+        this.setState(({data})=>this.toggleProperty(data,id,'done'))
+    }
+    toggleProperty = (arr,id,propName)=>{
+        const i = arr.findIndex((e)=>e.id===id),
+            item = arr[i];
+        return {
+            data:[...arr.slice(0,i),{...item,[propName]:!item[propName]},...arr.slice(i+1)]
+        }
     }
     addElement = (label="")=>{
         this.setState(({data,lastId})=>(
@@ -65,20 +48,53 @@ class App extends React.Component {
         important,
         done
     })
-    getElementById = (data,id)=>{
-        const i = data.findIndex((e)=>e.id===id)
-        return {item:data[i],index:i};
+
+    search = (items,text)=>{
+
+        if(text.length===0) return items;
+
+        return items.filter((item)=> {
+            return (item.label.toLowerCase().indexOf(text.toLowerCase()) > -1)
+        });
+    }
+
+    setSearchText = (text)=>{
+        //debugger
+        this.setState(({filterText})=>({
+            filterText:text
+        }))
+    }
+
+    filter = (items,filter)=>{
+        switch (filter) {
+            case 'all':
+                return items;
+                break;
+            case 'active':
+                return items.filter(item=>!item.done)
+                break;
+            case 'done':
+                return items.filter(item=>item.done)
+                break;
+        }
+    }
+    setButtonFilter = (val)=>{
+        this.setState(({buttonFilter})=>({
+            buttonFilter:val,
+        }))
     }
     render() {
         window.state = this.state
-        const {data} = this.state,
+        const {data,filterText,buttonFilter} = this.state,
             toDo = data.filter((e)=>!e.done).length,
-            done = data.length-toDo;
+            done = data.length-toDo,
+            filteredData = this.filter(this.search(data,filterText),buttonFilter);
+
         return (<div className={"body"}>
             <AppHeader toDo={toDo} done={done}/>
-            <SearchPanel placeholder={"search..."}/>
+            <SearchPanel placeholder={"search..."} activeButton={buttonFilter} setSearchText={this.setSearchText} setButtonFilter={this.setButtonFilter}/>
             <ToDoList
-                todos={data}
+                todos={filteredData}
                 onDelete={this.deleteElement}
                 addElement={this.addElement}
                 toggleImportant={this.toggleImportant}
