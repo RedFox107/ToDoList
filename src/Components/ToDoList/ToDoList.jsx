@@ -2,7 +2,6 @@ import React from "react";
 import ToDoListItem from "./ToDoListItem";
 import s from './ToDoList.module.css';
 import s_searchPanel from '../SearchPanel/SearchPanel.module.css'
-import * as PropTypes from "prop-types";
 
 class ToDoList extends React.Component {
     state={
@@ -11,11 +10,7 @@ class ToDoList extends React.Component {
     }
     ref =  React.createRef();
     changeText = (e,clear=false)=>{
-        //debugger
-        //debugger
         this.setState((state)=>{
-            //let aa = e.currentTarget()
-
             return {
                 errors:"",
                 newItemText: !clear?(this.ref.current.value) : ''
