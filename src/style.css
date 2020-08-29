@@ -1,16 +1,17 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins',sans-serif;
+
 }
 
 .body {
-
-    width: 48%;
+    margin: 0 10px;
     font-size: 120%;
-    max-width: 800px;
-    /border: 1px solid red;
-    padding: 3%;
+    width: 100%;
+    max-width: 600px;
+    min-width: 400px;
 }
 
 .flex {
@@ -18,8 +19,7 @@
 }
 
 #root {
-
-    margin-top:10% ;
+    padding-top:10% ;
     display: flex;
     justify-content: center;
     align-items: center;

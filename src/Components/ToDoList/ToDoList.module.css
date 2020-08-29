@@ -4,55 +4,85 @@
 }
 
 .toDoList {
-
     display: grid;
     grid-template-rows: 1fr;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.toDoList::-webkit-scrollbar {
+    border-radius: 3px;
+    width: 10px;
+    left: 5px;
+}
+
+.toDoList::-webkit-scrollbar-button {
+
+}
+
+.toDoList::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(255, 228, 196, 0.57);
+
+}
+
+.toDoList::-webkit-scrollbar-track {
+}
+
+.toDoList::-webkit-scrollbar-track-piece {
 }
 
 .toDoList > li {
     padding-right: 4px;
     list-style: none;
-    background-color: rgba(255,255,255,0.4);
+    background-color: rgba(255, 255, 255, 0.4);
     border-radius: 7px;
     margin-bottom: 2%;
 }
 
 .toDoListItem {
-
     display: grid;
     grid-gap: 5px;
-    grid-template-columns: 8fr 1fr 1fr;
+    grid-template-columns: 8fr 2fr;
 }
 
 .toDoListItemLabel {
     cursor: pointer;
     font-size: 1.1em;
-    padding: 5% 2%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.btnWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .btn {
     cursor: pointer;
     border: none;
     border-radius: 6px;
-    background-color: rgba(255,255,255,0.4);
+    background-color: rgba(255, 255, 255, 0.4);
+    transition: 0.5s;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
 }
 
 .btn:hover {
-
     transition: 0.5s;
     color: white;
 }
 
 .excBtn {
-    margin: 20% 0;
     border: 2px solid rgba(62, 184, 116, 0.81);
-
 }
 
 .trashBtn {
-    margin: 20% 0;
     border: 2px solid rgba(237, 62, 0, 0.8);
-
 }
 
 .trashBtn:hover {
@@ -63,23 +93,30 @@
     background-color: #3eb874;
 }
 
-.btn >i{
+.btn > i {
     font-size: 130%;
 }
-.done{
-    text-decoration: line-through ;
+
+.done {
+    text-decoration: line-through;
 }
-.createItemWrapper{
+
+.createItemWrapper {
     display: grid;
-    grid-template-columns:4fr 1fr;
+    grid-template-columns: 4fr 1fr;
 }
-.createItemWrapper>.btn{
-    font-size: 0.75em;
+
+.createItemWrapper > .btn {
+    margin: 0;
+    width: 100%;
+    font-size: 0.9em;
 }
-.createItemWrapper>.btn:hover{
+
+.createItemWrapper > .btn:hover {
     color: black;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 0.7);
 }
-.errors{
+
+.errors {
 
 }

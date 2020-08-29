@@ -4,37 +4,39 @@ import s from './ToDoList.module.css';
 import s_searchPanel from '../SearchPanel/SearchPanel.module.css'
 
 class ToDoList extends React.Component {
-    state={
-        newItemText:"",
-        errors:""
+    state = {
+        newItemText: "",
+        errors: ""
     }
-    ref =  React.createRef();
-    changeText = (e,clear=false)=>{
-        this.setState((state)=>{
+    ref = React.createRef();
+    changeText = (e, clear = false) => {
+
+        this.setState(() => {
             return {
-                errors:"",
-                newItemText: !clear?(this.ref.current.value) : ''
+                errors: "",
+                newItemText: !clear ? (this.ref.current.value) : ''
             }
 
         })
     }
 
-    addElement = ()=>{
+    addElement = () => {
         const label = this.state.newItemText
-        if(!label){
-            this.setState((state)=>({
+        if (!label) {
+            this.setState((state) => ({
                 ...state,
-                errors:"Text field cannot be empty!"
+                errors: "Text field cannot be empty!"
             }))
             return;
         }
         this.props.addElement(label);
 
-        this.changeText(null,true);
+        this.changeText(null, true);
     }
+
     render() {
         let {todos, ...props} = this.props;
-        const {newItemText,errors} = this.state
+        const {newItemText, errors} = this.state
         return (
             <>
                 <ul className={s.toDoList}>
@@ -57,23 +59,28 @@ class ToDoList extends React.Component {
                     )
                     }
                 </ul>
-                <div className={s.createItemWrapper}>
-                <input
-                    onChange={this.changeText}
-                    className={s_searchPanel.searchInput}
-                    value={newItemText} ref={this.ref}
-                    placeholder={"Create new item..."}
-                />
-                    <button onClick={this.addElement} className={s.btn}>Add item</button>
-                </div>
-                <div className={s.errors}>
-                    <span>{errors}</span>
-                </div>
-
+                <CreateItem newItemText={newItemText} errors={errors} ref={this.ref} changeText={this.changeText} addElement={this.addElement}/>
             </>
         )
     }
 }
+
+const CreateItem = React.forwardRef(({newItemText, errors,changeText,addElement},ref) => {
+    return <>
+        <div className={s.createItemWrapper}>
+            <input
+                onChange={changeText}
+                className={s_searchPanel.searchInput}
+                value={newItemText} ref={ref}
+                placeholder={"Create new item..."}
+            />
+            <button onClick={addElement} className={s.btn}>Add item</button>
+        </div>
+        <div className={s.errors}>
+            <span>{errors}</span>
+        </div>
+    </>
+})
 
 export default ToDoList
 

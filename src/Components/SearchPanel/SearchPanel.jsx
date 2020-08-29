@@ -14,8 +14,7 @@ class ItemStatusFilter extends React.PureComponent {
         this.props.setButtonFilter(e.target.name)
     }
     render() {
-        const {active} = this.state,
-            {activeButton} = this.props;
+        const {activeButton} = this.props;
         return (
             <div className={s.btnGroup}>
                 {this.buttons.map((e)=>(
@@ -26,8 +25,6 @@ class ItemStatusFilter extends React.PureComponent {
                         onClick={this.setFilter}>{e.label}</button>
                     )
                 )}
-
-
             </div>
         )
     }
