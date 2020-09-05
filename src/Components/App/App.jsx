@@ -43,8 +43,10 @@ class App extends React.Component {
     toggleProperty = (arr, id, propName) => {
         const i = arr.findIndex((e) => e.id === id),
             item = arr[i];
+        const newData = [...arr.slice(0, i), {...item, [propName]: !item[propName]}, ...arr.slice(i + 1)];
+        this.putNewDataInLocalStorage(newData);
         return {
-            data: [...arr.slice(0, i), {...item, [propName]: !item[propName]}, ...arr.slice(i + 1)]
+            data: newData
         }
     }
     addElement = (label = "") => {
@@ -52,7 +54,6 @@ class App extends React.Component {
                 const newLastId = lastId + 1;
                 const newData = [...data, this.createToDoItem(newLastId, label)];
                 this.putNewDataInLocalStorage(newData);
-
                 return {
                     data: newData,
                     lastId: newLastId,
@@ -67,6 +68,19 @@ class App extends React.Component {
         important,
         done
     })
+    setNewTextInItem = (id,text)=>{
+        this.setState(({data})=>{
+            const newData = data.map((e)=>{
+                if(e.id===id)
+                    e.label = text
+                return e;
+            });
+            this.putNewDataInLocalStorage(newData)
+            return {
+                data:newData
+            }
+        })
+    }
 
     search = (items, text) => {
 
@@ -76,14 +90,12 @@ class App extends React.Component {
             return (item.label.toLowerCase().indexOf(text.toLowerCase()) > -1)
         });
     }
-
     setSearchText = (text) => {
         //debugger
         this.setState(({filterText}) => ({
             filterText: text
         }))
     }
-
     filter = (items, filter) => {
         switch (filter) {
             case 'all':
@@ -111,6 +123,7 @@ class App extends React.Component {
             <SearchPanel placeholder={"search..."} activeButton={buttonFilter} setSearchText={this.setSearchText}
                          setButtonFilter={this.setButtonFilter}/>
             <ToDoList
+                setNewTextInItem={this.setNewTextInItem}
                 todos={filteredData}
                 onDelete={this.deleteElement}
                 addElement={this.addElement}

@@ -44,6 +44,9 @@ class ToDoList extends React.Component {
                             <li key={id}>
                                 <ToDoListItem
                                     {...item}
+                                    onRefactor={
+                                        (text)=>{this.props.setNewTextInItem(id,text)}
+                                    }
                                     onDeleted={() => {
                                         props.onDelete(id);
                                     }}
@@ -73,6 +76,7 @@ const CreateItem = React.forwardRef(({newItemText, errors,changeText,addElement}
                 className={s_searchPanel.searchInput}
                 value={newItemText} ref={ref}
                 placeholder={"Create new item..."}
+                onKeyUp={({key})=>{key==='Enter'&&addElement()}}
             />
             <button onClick={addElement} className={s.btn}>Add item</button>
         </div>

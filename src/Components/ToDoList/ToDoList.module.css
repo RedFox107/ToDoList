@@ -16,9 +16,6 @@
     left: 5px;
 }
 
-.toDoList::-webkit-scrollbar-button {
-
-}
 
 .toDoList::-webkit-scrollbar-thumb {
     border-radius: 10px;
@@ -26,11 +23,6 @@
 
 }
 
-.toDoList::-webkit-scrollbar-track {
-}
-
-.toDoList::-webkit-scrollbar-track-piece {
-}
 
 .toDoList > li {
     padding-right: 4px;
@@ -43,7 +35,7 @@
 .toDoListItem {
     display: grid;
     grid-gap: 5px;
-    grid-template-columns: 8fr 2fr;
+    grid-template-columns: 7fr 3fr;
 }
 
 .toDoListItemLabel {
@@ -52,6 +44,14 @@
     padding: 5px;
     display: flex;
     align-items: center;
+
+}
+
+.toDoListItemInput{
+    border: none;
+    border-radius: 7px 0 0 7px;
+    cursor: text;
+    background-color: rgba(255, 255, 255, 0.44);
 }
 
 .btnWrap {
@@ -85,12 +85,20 @@
     border: 2px solid rgba(237, 62, 0, 0.8);
 }
 
+.refactorBtn{
+    border: 2px solid rgba(0, 162, 237, 0.8);
+}
+
 .trashBtn:hover {
     background-color: rgba(237, 62, 0, 0.8);
 }
 
 .excBtn:hover {
     background-color: #3eb874;
+}
+
+.refactorBtn:hover{
+    background-color:rgba(0, 162, 237, 0.8);
 }
 
 .btn > i {
