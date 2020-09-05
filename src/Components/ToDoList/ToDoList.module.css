@@ -5,9 +5,11 @@
 
 .toDoList {
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-rows:1fr;
     max-height: 500px;
     overflow-y: auto;
+    min-width: 250px;
+    overflow-x: hidden;
 }
 
 .toDoList::-webkit-scrollbar {
@@ -30,12 +32,14 @@
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 7px;
     margin-bottom: 2%;
+
 }
 
 .toDoListItem {
     display: grid;
     grid-gap: 5px;
     grid-template-columns: 7fr 3fr;
+    transition: 0.5s;
 }
 
 .toDoListItemLabel {
@@ -76,7 +80,10 @@
     transition: 0.5s;
     color: white;
 }
-
+.btn:active{
+    width: 38px;
+    height: 38px;
+}
 .excBtn {
     border: 2px solid rgba(62, 184, 116, 0.81);
 }
@@ -100,6 +107,10 @@
 .refactorBtn:hover{
     background-color:rgba(0, 162, 237, 0.8);
 }
+.refactorBtnActive{
+    color: white;
+    background-color:rgba(0, 162, 237, 0.8);
+}
 
 .btn > i {
     font-size: 130%;
@@ -112,11 +123,13 @@
 .createItemWrapper {
     display: grid;
     grid-template-columns: 4fr 1fr;
+    margin-top: 5px;
+
 }
 
 .createItemWrapper > .btn {
-    margin: 0;
     width: 100%;
+    margin: 0;
     font-size: 0.9em;
 }
 
@@ -127,4 +140,22 @@
 
 .errors {
 
+}
+@media (max-width: 510px) {
+    .createItemWrapper{
+
+        grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    }
+    .createItemWrapper > .btn{
+        margin-top: 5px;
+    }
+    .toDoList{
+        max-height: 250px;
+        overflow-y: auto;
+    }
+}
+@media (max-width: 380px) {
+    .toDoListItem{
+        grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    }
 }

@@ -1,7 +1,7 @@
 .baseBlock{
     margin: 3% 0;
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1.5fr)) ;
 }
 
 .searchInput{
@@ -20,9 +20,11 @@
     margin-left: 3px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 
 }
 .btnGroup>button{
+    min-width: 60px;
     font-size: 0.85em;
     cursor: pointer;
     height: 35px;
@@ -58,4 +60,10 @@
 
     border: none;
     background-color: bisque;
+}
+
+@media (max-width: 530px) {
+    .btnGroup{
+        margin-top: 5px;
+    }
 }

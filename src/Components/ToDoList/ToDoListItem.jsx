@@ -30,6 +30,10 @@ class ToDoListItem extends React.PureComponent {
         this.props.onRefactor(this.state.itemText)
         this.toggleRefactorMode();
     }
+    onEnterKeyPush = ({key})=>{
+        if (key==="Enter")
+            this.onRefEnd()
+    }
 
     render() {
         const {label, done, important} = this.props;
@@ -39,7 +43,11 @@ class ToDoListItem extends React.PureComponent {
             <div className={s.toDoListItem}>
                 {(isRefactorNow)
                     ?
-                    <input onChange={this.refactorItem} value={this.state.itemText} className={`${s.toDoListItemLabel} ${s.toDoListItemInput}`} autoFocus={true}/>
+                    <input
+                        onKeyDown={this.onEnterKeyPush}
+                        onChange={this.refactorItem}
+                        value={this.state.itemText}
+                        className={`${s.toDoListItemInput} ${s.toDoListItemLabel} `} autoFocus={true}/>
                     :
                     <span
                         className={`${s.toDoListItemLabel}  ${important && s.important} ${done && s.done}`}
@@ -47,7 +55,7 @@ class ToDoListItem extends React.PureComponent {
                     >{label}</span>
                 }
                 <div className={s.btnWrap}>
-                    <button className={`${s.refactorBtn} ${s.btn}`}
+                    <button className={`${s.refactorBtn} ${s.btn} ${isRefactorNow&&s.refactorBtnActive}`}
                             onClick={(isRefactorNow)?this.onRefEnd:this.toggleRefactorMode}
                     >
                         <i className={isRefactorNow?"fa fa-times":"fa fa-pencil"} aria-hidden="true"/>
